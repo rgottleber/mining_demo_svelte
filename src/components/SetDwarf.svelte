@@ -12,10 +12,10 @@
 	];
 	let selected;
 	async function handleSubmit() {
-		const txn = await minerContract.changeDwarf(selected.id);
-		mining = true;
-		await txn.wait();
-		mining = false;
+		// Call the contract function to change the Dwarf
+		// Start mining
+		// Wait for the transaction to be mined
+		// Stop mining
 	}
 </script>
 

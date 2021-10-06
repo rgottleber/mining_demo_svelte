@@ -2,19 +2,10 @@
 	export let minerContract;
 	$: currentDwarf = {};
 	const getDwarf = async () => {
-		const currentDwarfData = await minerContract.getCurrentDwarf();
-		currentDwarf = {
-			dwarf: currentDwarfData,
-			image: `/${currentDwarfData}.png`
-		};
-		minerContract.on('NewDwarf', (dwarf) => {
-			currentDwarf = {
-				dwarf: dwarf,
-				image: `/${dwarf}.png`
-			};
-		});
-
-		return currentDwarf;
+		// Call the getCurrentDwarf function in the miner contract
+		// Get the current dwarf's data
+		// Update the page on event emit
+		// Return the current dwarf
 	};
 	getDwarf();
 </script>

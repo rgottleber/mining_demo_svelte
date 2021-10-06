@@ -10,20 +10,26 @@
 	const contractAddress = '0x0Bd6e788347a0dE65558fB50003F65235d91dE56';
 	onMount(async () => {
 		try {
+			// Check if Web3 has been injected by the browser (MetaMask)
 			const { ethereum } = window;
-			const provider = new ethers.providers.Web3Provider(ethereum);
-			const signer = provider.getSigner();
-			const minerContract = new ethers.Contract(contractAddress, Miner.abi, signer);
-
-			web3Props = {
-				minerContract
-			};
-
+			// If not, prompt for MetaMask
 			if (!ethereum) {
 				alert('Get MetaMask!');
 				return;
 			}
+			// Get the provider
+			const provider = new ethers.providers.Web3Provider(ethereum);
+			// Get the signer
+			const signer = provider.getSigner();
+			// Get the contract
+			const minerContract = new ethers.Contract(contractAddress, Miner.abi, signer);
+			// update the props for the components
+			web3Props = {
+				minerContract
+			};
+			// Get the accounts
 			const accounts = await ethereum.request({ method: 'eth_accounts' });
+			// Set the account and chainID
 			if (accounts.length !== 0) {
 				account = accounts[0];
 				chainID = await signer.getChainId();
@@ -32,12 +38,17 @@
 			console.log(error);
 		}
 	});
+	// Attach Wallet if not already attached
 	async function attachWallet() {
+		//Get the provider, this time without ethereum object
 		const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
 		// Prompt user for account connections
 		await provider.send('eth_requestAccounts', []);
+		// Get the signer
 		const signer = provider.getSigner();
+		// Get the account
 		account = await signer.getAddress();
+		// Get the chainID
 		chainID = await signer.getChainId();
 	}
 </script>
