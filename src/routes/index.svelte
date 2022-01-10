@@ -48,7 +48,7 @@
 </p>
 
 {#if !account}
-	<p>This application is build on the Rinkeby Test Network.</p>
+	<p>This application is built on the Rinkeby Test Network.</p>
 	<p>Please connect your wallet to Rinkeby Test Network.</p>
 	<p>
 		<button on:click={attachWallet}>Attach Wallet</button>
