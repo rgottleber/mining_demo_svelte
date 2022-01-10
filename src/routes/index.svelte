@@ -14,11 +14,9 @@
 			const provider = new ethers.providers.Web3Provider(ethereum);
 			const signer = provider.getSigner();
 			const minerContract = new ethers.Contract(contractAddress, Miner.abi, signer);
-
 			web3Props = {
 				minerContract
 			};
-
 			if (!ethereum) {
 				alert('Get MetaMask!');
 				return;
